@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwc.tranmanagement.dao.TransrecordDao">
+
+    <resultMap type="com.dwc.tranmanagement.entity.Transrecord" id="TransrecordMap">
+        <result property="transactionid" column="TransactionID" jdbcType="INTEGER"/>
+        <result property="tradeid" column="TradeID" jdbcType="INTEGER"/>
+        <result property="version" column="Version" jdbcType="INTEGER"/>
+        <result property="securitycode" column="SecurityCode" jdbcType="VARCHAR"/>
+        <result property="quantity" column="Quantity" jdbcType="INTEGER"/>
+        <result property="operation" column="operation" jdbcType="VARCHAR"/>
+        <result property="deal" column="deal" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TransrecordMap">
+        select
+          TransactionID, TradeID, Version, SecurityCode, Quantity, operation, deal
+        from test.transrecord
+        where TransactionID = #{transactionid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TransrecordMap">
+        select
+          TransactionID, TradeID, Version, SecurityCode, Quantity, operation, deal
+        from test.transrecord
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TransrecordMap">
+        select
+          TransactionID, TradeID, Version, SecurityCode, Quantity, operation, deal
+        from test.transrecord
+        <where>
+            <if test="transactionid != null">
+                and TransactionID = #{transactionid}
+            </if>
+            <if test="tradeid != null">
+                and TradeID = #{tradeid}
+            </if>
+            <if test="version != null">
+                and Version = #{version}
+            </if>
+            <if test="securitycode != null and securitycode != ''">
+                and SecurityCode = #{securitycode}
+            </if>
+            <if test="quantity != null">
+                and Quantity = #{quantity}
+            </if>
+            <if test="operation != null and operation != ''">
+                and operation = #{operation}
+            </if>
+            <if test="deal != null and deal != ''">
+                and deal = #{deal}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="transactionid" useGeneratedKeys="true">
+        insert into test.transrecord(TradeID, Version, SecurityCode, Quantity, operation, deal)
+        values (#{tradeid}, #{version}, #{securitycode}, #{quantity}, #{operation}, #{deal})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update test.transrecord
+        <set>
+            <if test="tradeid != null">
+                TradeID = #{tradeid},
+            </if>
+            <if test="version != null">
+                Version = #{version},
+            </if>
+            <if test="securitycode != null and securitycode != ''">
+                SecurityCode = #{securitycode},
+            </if>
+            <if test="quantity != null">
+                Quantity = #{quantity},
+            </if>
+            <if test="operation != null and operation != ''">
+                operation = #{operation},
+            </if>
+            <if test="deal != null and deal != ''">
+                deal = #{deal},
+            </if>
+        </set>
+        where TransactionID = #{transactionid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from test.transrecord where TransactionID = #{transactionid}
+    </delete>
+
+    <select id="findMaxVersion" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+
+        select max(Version) from test.transrecord where TradeID = #{TradeID}
+
+    </select>
+
+</mapper>
