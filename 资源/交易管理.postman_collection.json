@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "503701d6-e925-4426-92a1-77407697a16a",
+		"name": "交易管理",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "开户",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"张三\",\n\t\"username\":\"zansan\",\n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/position/openAccount",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"position",
+						"openAccount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionid\": \"\",\r\n    \"tradeid\": 7,\r\n    \"version\": \"\",\r\n    \"securitycode\": \"REL\",\r\n    \"quantity\": 50,\r\n    \"operation\": \"\",\r\n    \"deal\": \"Buy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/transrecord/deal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"transrecord",
+						"deal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "交易员最新交易记录查询",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"张三\",\n\t\"username\":\"zansan\",\n\t\"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/transrecord/newest?tradeid=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"transrecord",
+						"newest"
+					],
+					"query": [
+						{
+							"key": "tradeid",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "交易员进行交易记录删除",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionid\": \"\",\r\n    \"tradeid\": 7,\r\n    \"version\": \"\",\r\n    \"securitycode\": \"REL\",\r\n    \"quantity\": 50,\r\n    \"operation\": \"CANCEL\",\r\n    \"deal\": \"Sell\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/transrecord/cancel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"transrecord",
+						"cancel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "交易员所有交易记录查询",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionid\": \"\",\r\n    \"tradeid\": 6,\r\n    \"version\": \"\",\r\n    \"securitycode\": \"REL\",\r\n    \"quantity\": 50,\r\n    \"operation\": \"CANCEL\",\r\n    \"deal\": \"Sell\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/transrecord/findAll?tradeid=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"transrecord",
+						"findAll"
+					],
+					"query": [
+						{
+							"key": "tradeid",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "交易员股票寸头查询",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionid\": \"\",\r\n    \"tradeid\": 6,\r\n    \"version\": \"\",\r\n    \"securitycode\": \"REL\",\r\n    \"quantity\": 50,\r\n    \"operation\": \"CANCEL\",\r\n    \"deal\": \"Sell\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/position/findAll?tradeid=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"position",
+						"findAll"
+					],
+					"query": [
+						{
+							"key": "tradeid",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
